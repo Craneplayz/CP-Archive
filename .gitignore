@@ -6,6 +6,8 @@
 *.h
 *.hpp
 *.json
-/a.out.dSYM
+a.out.dSYM
 
 !/Templates
+.vscode
+.vscode/Template.code-snippets
