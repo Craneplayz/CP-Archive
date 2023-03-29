@@ -5,4 +5,7 @@
 *.txt
 *.h
 *.hpp
+*.json
 /a.out.dSYM
+
+!/Templates
