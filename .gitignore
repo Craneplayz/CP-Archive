@@ -1,0 +1,8 @@
+*.cpp
+*.cs
+*.exe
+*a.out
+*.txt
+*.h
+*.hpp
+/a.out.dSYM
