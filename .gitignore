@@ -7,7 +7,12 @@
 *.hpp
 *.json
 a.out.dSYM
-
-!/Templates
 .vscode
-.vscode/Template.code-snippets
+
+!/Snippets
+!/CSES
+!/LeetCode
+!/MCO
+!/Atcoder
+!/Codeforces
+!.vscode/Template.code-snippets
