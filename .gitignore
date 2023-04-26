@@ -1,10 +1,6 @@
-*.cpp
-*.cs
 *.exe
 *a.out
 *.txt
-*.h
-*.hpp
 *.json
 a.out.dSYM
 .vscode
