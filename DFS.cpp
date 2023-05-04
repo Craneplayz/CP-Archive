@@ -14,7 +14,6 @@
 #include <stack>
 #include <string>
 #include <tuple>
-#include <unordered_set>
 #include <vector>
 using namespace std;
 
@@ -35,28 +34,42 @@ ofstream fout("output.txt");
 #define cout fout
 #endif
 
+// adj[u] = {v}
+// adj[从这个点] = {可以去到的点}
+vector<vector<int>> adj = {
+    {},     // 0
+    {2, 3}, // 1
+    {4, 5}, // 2
+    {6, 7}, // 3
+    {},     // 4
+    {},     // 5
+    {},     // 6
+    {}      // 7
+};
+vector<bool> visited(11, 0); // Visted array 10 个 False
+
+void dfs(int s) {
+    stack<int> stack;
+    // let stack = [];
+    
+    stack.push(1);
+    // arr.length
+    while (!stack.empty()) {
+        int u = stack.top(); 
+        stack.pop();
+        // let u = stack.pop()
+        visited[u] = true;
+
+        // let i = 0; i < adj[u].length; i++
+        for (int i = 0; i < (int)adj[u].size(); i++) {
+            int v = adj[u][i]; // let
+            if (!visited[v])
+                stack.push(v);
+        }
+    }
+}
+
 void solve() {
-    int n;
-    cin >> n;
-    vector<int> a(n);
-    for (int i = 0; i < n; i++)
-        cin >> a[i];
-
-    vector<int> dp(1000 * n + 1, 0);
-    const int m = dp.size();
-    set<int> ans;
-    dp[0] = 1;
-    for (int i = 0; i < n ; i++)
-        for (int j = m - 1; j - a[i] >= 0; j--)
-            if (dp[j - a[i]]) {
-                dp[j] = 1;
-                ans.insert(j);
-            }
-
-    cout << ans.size() << "\n";
-    for (const int &x : ans)
-        cout << x << " ";
-    cout << "\n";
 }
 
 int main() {
