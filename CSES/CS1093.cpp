@@ -4,9 +4,10 @@
 #include <cmath>
 #include <deque>
 #include <fstream>
-#include <list>
+#include <functional>
 #include <iomanip>
 #include <iostream>
+#include <list>
 #include <map>
 #include <queue>
 #include <set>
@@ -19,10 +20,12 @@ using namespace std;
 #define ll long long
 #define elif else if
 #define endl '\n'
+#define all(x) (x).begin(), (x).end()
+#define rall(x) (x).rbegin(), (x).rend()
 
 #define EPS 1e-9
 #define PI acos(-1)
-#define MOD = 1000000009 + 7
+#define MOD 1000000007
 
 #ifdef DEBUG
 ifstream fin("input.txt");
@@ -31,31 +34,34 @@ ofstream fout("output.txt");
 #define cout fout
 #endif
 
-void solve(){
-    string n;
+void solve() {
+    int n;
     cin >> n;
+    int sum = (n * (n + 1)) >> 1;
 
-    bool isPalindrome = true;
-    int i = 0, j = n.length()-1;
-    while (i < j && isPalindrome){
-        isPalindrome = (n[i] == n[j]);
-        i++;
-        j--;
+    if (sum & 1) {
+        cout << 0 << "\n";
+        return;
     }
-
-    if (isPalindrome)
-        cout << "YES\n";
     else
-        cout << "NO\n";
+        sum >>= 1;
+
+    vector<ll> dp(sum + 1);
+    dp[0] = 1;
+    for (int i = 1; i <= n; i++)
+        for (int j = sum; j - i >= 0; j--)
+            dp[j] = (dp[j] + dp[j - i]) % (2LL * MOD);
+
+    cout << (dp[sum] >> 1) % MOD << '\n';
 }
 
-int main(){
-    #ifndef DEBUG
+int main() {
+#ifndef DEBUG
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    #endif
-    
+#endif
+
     solve();
-    
+
     return 0;
 }

@@ -30,35 +30,44 @@ using namespace std;
 #define MOD 1000000007
 #define INF 1e18
 
+#ifdef DEBUG
 ifstream fin("input.txt");
 ofstream fout("output.txt");
 #define cin fin
 #define cout fout
+#endif
 
-int main() {
-    // while (true) {
-    string t;
-    getline(cin, t);
+void solve() {
+    int n;
+    cin >> n;
+    n += 2;
+    vector<long long> t(n);
+    for (int i = 0; i < n; i++)
+        cin >> t[i];
 
-    while (!isdigit(t.front())) {
-        t.erase(t.begin());
-    }
+    vector<long long> dp(n, INF);
+    dp[0] = 0; // dp[0][0] = 0
 
-    for (int i = 0; i < (int)t.length(); i++) {
-        if (t[i] == ' ') {
-            if ((i && isalnum(t[i - 1])) ||
-                (i < (int)t.length() && isalnum(t[i + 1])))
-                t[i] = '-';
-            else
-                t.erase(t.begin() + i--);
+    // Skipping between 0-1, initial position
+    for (int i = 1; i < n - 1; i++) {
+        for (int j = 0; j < i; j++) {
+            // dp[i+1]
+            dp[i] = min(dp[i], dp[j] + abs(t[j] - t[i + 1])); // B moved
+
+            dp[j] = dp[j] + abs(t[i] - t[i + 1]); // A moved
         }
     }
+    long long ans = *min_element(all(dp));
+    cout << ans << '\n';
+}
 
-    for (int i = 0; i < (int)t.length();i++){
-        if (t[i] == '-' && t[i+1] == '-')
-            t.erase(t.begin() + i--);
-    }
+int main() {
+#ifndef DEBUG
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+#endif
 
-        cout << t << '\n';
-    // }
+    solve();
+
+    return 0;
 }

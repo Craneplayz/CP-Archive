@@ -9,11 +9,13 @@
 #include <iostream>
 #include <list>
 #include <map>
+#include <numeric>
 #include <queue>
 #include <set>
 #include <stack>
 #include <string>
 #include <tuple>
+#include <unordered_set>
 #include <vector>
 using namespace std;
 
@@ -26,6 +28,7 @@ using namespace std;
 #define EPS 1e-9
 #define PI acos(-1)
 #define MOD 1000000007
+#define INF 1e9
 
 #ifdef DEBUG
 ifstream fin("input.txt");
@@ -34,42 +37,34 @@ ofstream fout("output.txt");
 #define cout fout
 #endif
 
-// adj[u] = {v}
-// adj[从这个点] = {可以去到的点}
-vector<vector<int>> adj = {
-    {},     // 0
-    {2, 3}, // 1
-    {4, 5}, // 2
-    {6, 7}, // 3
-    {},     // 4
-    {},     // 5
-    {},     // 6
-    {}      // 7
-};
-vector<bool> visited(11, 0); // Visted array 10 个 False
-
-void dfs(int s) {
-    stack<int> stack;
-    // let stack = [];
-    
-    stack.push(1);
-    // arr.length
-    while (!stack.empty()) {
-        int u = stack.top(); 
-        stack.pop();
-        // let u = stack.pop()
-        visited[u] = true;
-
-        // let i = 0; i < adj[u].length; i++
-        for (int i = 0; i < (int)adj[u].size(); i++) {
-            int v = adj[u][i]; // let
-            if (!visited[v])
-                stack.push(v);
-        }
-    }
-}
-
 void solve() {
+    int n, d;
+    cin >> n >> d;
+    string s;
+    cin >> s;
+
+    int ans = 0;
+    for (int i = 0; i < n - 1; i++) {
+        int k = i;
+        if (i + d >= n - 1) {
+            ans++;
+            break;
+        }
+        
+        for (int j = i + d; i < j; j--) {
+            if (s[j] == '1') {
+                k = j;
+                ans++;
+                break;
+            }
+        }
+        if (k == i) {
+            cout << "-1\n";
+            return;
+        }
+        i = k - 1;
+    }
+    cout << ans << "\n";
 }
 
 int main() {
