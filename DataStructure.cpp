@@ -77,8 +77,49 @@ struct {
 };
 
 int main() {
-    // Data Type
+
+    /*
+    DataType variableName; - Declare
+    variableName = value; - Assign
+    DataType variableName = value; - Define
+    */
     int a = 1;
+    // DataType -> vector<int>
+    // variableName -> v
+    // value -> null
+    vector<int> v;
+
+    // Primitive
+    // number (int, double, float, long, long long)
+    // bool
+    // char
+    // array
+
+    // User-defined -> class( Primitive 排列组合)
+    // string
+    // vector
+    // set
+    // 
+
+    int arr[3] = {1, 2, 3};
+    vector<int> vec = {1, 2, 3};
+
+    int arr1[3];
+    // DataType variableName = value;
+    // Constructor
+    vector<int> vec1 = vector<int>(3, 1); // {1, 1, 1}
+    vec1.push_back(2); // vec1 = {1, 1, 1, 2}
+    vec1.pop_back(); // vec1 = {1, 1, 1}
+
+    int numberOfElements = sizeof(arr) / sizeof(arr[0]);
+    int numberOfElementsInVector = vec1.size();
+
+    sort(arr1, arr1 + numberOfElements);
+    sort(vec1.begin(), vec1.end());
+
+    // Container
+
+    // Data Type
     int b(a); // int b = a
 
     // Variable 名叫 obj，Data Type：MyClass

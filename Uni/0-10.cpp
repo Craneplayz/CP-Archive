@@ -5,9 +5,9 @@
 #include <deque>
 #include <fstream>
 #include <functional>
-#include <list>
 #include <iomanip>
 #include <iostream>
+#include <list>
 #include <map>
 #include <numeric>
 #include <queue>
@@ -15,8 +15,8 @@
 #include <stack>
 #include <string>
 #include <tuple>
-#include <vector>
 #include <unordered_set>
+#include <vector>
 using namespace std;
 
 #define ll long long
@@ -30,17 +30,29 @@ using namespace std;
 #define MOD 1000000007
 #define INF 1e9
 
-#ifdef DEBUG
-ifstream fin("input.txt");
-ofstream fout("output.txt");
-#define cin fin
-#define cout fout
-#endif
+// ifstream fin("0.in");
+// ofstream fout("0.out");
+// #define cin fin
+// #define cout fout
 
 void solve() {
     int n;
     cin >> n;
-    
+
+    if (!n) {
+        cout << "None\n";
+        return;
+    }
+
+    vector<int> a(n);
+    for (int i = 0; i < n; i++)
+        cin >> a[i];
+
+    vector<int> aux = a;
+    sort(all(aux));
+
+    for (int x : a)
+        cout << lower_bound(all(aux), x) - aux.begin() << "\n";
 }
 
 int main() {
@@ -48,8 +60,8 @@ int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
 #endif
-    
+
     solve();
-    
+
     return 0;
 }

@@ -5,6 +5,8 @@
 a.out.dSYM
 .vscode
 Help
+.DS_STORE
+*.ipynb
 
 !/Snippets
 !/CSES

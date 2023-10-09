@@ -19,8 +19,7 @@
 #include <unordered_set>
 using namespace std;
 
-typedef long long ll;
-typedef long double ld;
+#define ll long long
 #define elif else if
 #define endl '\n'
 #define all(x) (x).begin(), (x).end()
@@ -31,8 +30,26 @@ typedef long double ld;
 #define MOD 1000000007
 #define INF 1e9
 
-using namespace std;
+#ifdef DEBUG
+ifstream fin("input.txt");
+ofstream fout("output.txt");
+#define cin fin
+#define cout fout
+#endif
+
+void solve() {
+    int a, b;
+    cin >> a >> b;
+    cout << a + b << "\n";
+}
 
 int main() {
+#ifndef DEBUG
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+#endif
     
+    solve();
+    
+    return 0;
 }
