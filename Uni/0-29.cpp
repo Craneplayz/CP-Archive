@@ -38,13 +38,13 @@ ofstream fout("output.txt");
 #define cout fout
 #endif
 
-vector<string> expr;
+vector<string> tokens;
 
 /// @brief
 /// @param x Current index of interest
 /// @return { Result of the expression, final index that has been considered}
 pair<double, int> eval(const int x = 0) {
-    string top = expr[x];
+    string top = tokens[x];
     if (!isalnum(top[0])) { // Symbol is operator
         auto [a, k] = eval(x + 1);
 
@@ -75,7 +75,7 @@ pair<double, int> eval(const int x = 0) {
 int main() {
     string x;
     while (cin >> x)
-        expr.push_back(x);
+        tokens.push_back(x);
 
     auto [ans, _] = eval();
     cout << fixed << setprecision(6) << ans << "\n";
